@@ -169,26 +169,49 @@
             letter-spacing: 0.05em;
         }
 
+        /* Profile Card & Image Styling */
         .profile-card {
             background-color: var(--p5-card-bg);
             border: 1px solid var(--p5-border);
             border-radius: 8px;
-            padding: 32px;
+            padding: 24px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border-left: 4px solid var(--p5-red);
         }
 
+        .profile-img-container {
+            width: 100%;
+            height: 260px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid var(--p5-border);
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            filter: grayscale(10%) contrast(105%);
+            transition: filter 0.3s ease;
+        }
+
+        .profile-img-container img:hover {
+            filter: grayscale(0%);
+        }
+
         .profile-card h3 {
             font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .profile-card p {
             color: var(--p5-gray);
             font-size: 0.95rem;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .profile-meta {
@@ -269,6 +292,33 @@
             position: absolute;
             left: 0;
             color: var(--p5-red);
+        }
+
+        /* Certification Card Styling */
+        .cert-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .cert-img-wrapper {
+            width: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--p5-border);
+            background: #000;
+        }
+
+        .cert-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-img-wrapper img:hover {
+            transform: scale(1.02);
         }
 
         /* Skills Matrix */
@@ -366,7 +416,7 @@
 
         /* Responsive Design */
         @media(max-width: 900px) {
-            .hero {
+            .hero, .cert-container {
                 grid-template-columns: 1fr;
                 gap: 32px;
             }
@@ -385,11 +435,12 @@
 
     <!-- Navigation Header -->
     <header>
-        <div class="logo">B. Aguinaldo<span>//</span></div>
+        <div class="logo">Benedick<span>//</span></div>
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#organizations">Organizations</a></li>
             </ul>
@@ -406,6 +457,10 @@
                 <p>I am a 3rd-year Bachelor of Science in Information Technology student at the Polytechnic University of the Philippines (PUP) and a multi-scholar. Passionate about building functional and user-centric software, specializing in back-end web development and database management.</p>
             </div>
             <div class="profile-card">
+                <!-- Profile Image Attached -->
+                <div class="profile-img-container">
+                    <img src="image.png" alt="Benedick M. Aguinaldo Profile Picture">
+                </div>
                 <h3>Benedick M. Aguinaldo</h3>
                 <p>Backend Developer & Database Architect</p>
                 <div class="profile-meta">
@@ -459,6 +514,29 @@
                         <li><strong>QCYDO Scholar</strong> – Quezon City Youth Development Office</li>
                         <li><strong>SM Scholar</strong> – SM Foundation passer</li>
                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="pro-card">
+                <div class="cert-container">
+                    <div class="cert-img-wrapper">
+                        <!-- Certification Image Attached -->
+                        <img src="image_2.png" alt="Introduction to Cloud Certificate - IBM & Cognitive Class">
+                    </div>
+                    <div>
+                        <h4>Introduction to Cloud</h4>
+                        <div class="subtitle">Cognitive Class (Powered by IBM Developer Skills Network)</div>
+                        <p style="margin-bottom: 12px;"><strong>Course Code:</strong> CC0101EN</p>
+                        <p style="margin-bottom: 12px;"><strong>Issued On:</strong> October 19, 2026</p>
+                        <p>Successfully completed and earned a passing grade, validating fundamental cloud computing concepts and architectures.</p>
+                    </div>
                 </div>
             </div>
         </section>
