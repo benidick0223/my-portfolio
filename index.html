@@ -196,8 +196,8 @@
         .profile-img-container img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Prevents cropping out any part of the ID picture */
-            object-position: center bottom; /* Aligns toward the bottom to show shoulders and face fully */
+            object-fit: contain;
+            object-position: center bottom;
             filter: grayscale(5%) contrast(105%);
             transition: filter 0.3s ease;
         }
@@ -403,6 +403,45 @@
             color: var(--p5-gray);
         }
 
+        /* Contact Section Styling */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .contact-card {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--p5-red);
+            transform: translateY(-2px);
+        }
+
+        .contact-card .contact-label {
+            font-size: 0.85rem;
+            color: var(--p5-red);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-card .contact-value {
+            font-size: 0.95rem;
+            color: var(--p5-light);
+            font-weight: 500;
+            word-break: break-all;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--p5-border);
@@ -447,6 +486,7 @@
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#organizations">Organizations</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -622,11 +662,41 @@
             </div>
         </section>
 
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="section-header">
+                <h2 class="section-title">Contact Channels</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-grid">
+                <a href="space" class="contact-card" target="_blank">
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">space</span>
+                </a>
+                <a href="space" class="contact-card" target="_blank">
+                    <span class="contact-label">PUP Webmail</span>
+                    <span class="contact-value">space</span>
+                </a>
+                <a href="space" class="contact-card" target="_blank">
+                    <span class="contact-label">Phone</span>
+                    <span class="contact-value">space</span>
+                </a>
+                <a href="space" class="contact-card" target="_blank">
+                    <span class="contact-label">LinkedIn</span>
+                    <span class="contact-value">space</span>
+                </a>
+                <a href="space" class="contact-card" target="_blank">
+                    <span class="contact-label">Facebook</span>
+                    <span class="contact-value">space</span>
+                </a>
+            </div>
+        </section>
+
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 Benedick M. Aguinaldo. Built with <span>precision</span> and clean code.</p>
+        <p>© 2026 Benedick M. Aguinaldo.</p>
     </footer>
 
 </body>
