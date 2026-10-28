@@ -1,65 +1,506 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <!-- Tailwind CSS CDN for instant styling -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Benedick M. Aguinaldo — Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Teko:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        @import "tailwindcss";
+        :root {
+            --p5-red: #E60012;
+            --p5-dark-red: #B3000E;
+            --p5-black: #0D0D0D;
+            --p5-charcoal: #1A1A1A;
+            --p5-gray: #2B2B2B;
+            --p5-white: #F2F2F2;
+            --p5-pure-white: #FFFFFF;
+            --p5-yellow: #FFCC00;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: crosshair;
+        }
+
+        body {
+            background-color: var(--p5-black);
+            color: var(--p5-white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Comic Book / Dynamic Background Stripes */
+        .bg-stripes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: repeating-linear-gradient(
+                -45deg,
+                rgba(230, 0, 18, 0.03),
+                rgba(230, 0, 18, 0.03) 30px,
+                transparent 30px,
+                transparent 60px
+            );
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--p5-black);
+            border-bottom: 4px solid var(--p5-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            z-index: 1000;
+            transform: skew(-5deg);
+        }
+
+        .logo {
+            font-family: 'Teko', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--p5-pure-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: var(--p5-red);
+            padding: 0 15px;
+            transform: skew(5deg);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            transform: skew(5deg);
+        }
+
+        nav a {
+            color: var(--p5-white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: 0.2s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--p5-yellow);
+            text-shadow: 2px 2px var(--p5-red);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 140px auto 80px auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 4.5rem;
+            text-transform: uppercase;
+            color: var(--p5-pure-white);
+            background: var(--p5-red);
+            display: inline-block;
+            padding: 0 25px;
+            transform: skew(-10deg);
+            margin-bottom: 40px;
+            box-shadow: 6px 6px 0px var(--p5-yellow);
+        }
+
+        .section-title span {
+            display: inline-block;
+            transform: skew(10deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+        .hero-content {
+            background: var(--p5-charcoal);
+            border: 4px solid var(--p5-pure-white);
+            padding: 50px;
+            position: relative;
+            transform: skew(-3deg);
+            box-shadow: 12px 12px 0px var(--p5-red);
+        }
+
+        .hero-inner {
+            transform: skew(3deg);
+        }
+
+        .hero h1 {
+            font-family: 'Teko', sans-serif;
+            font-size: 5rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--p5-yellow);
+            margin-bottom: 20px;
+            text-shadow: 3px 3px var(--p5-red);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--p5-white);
+            margin-bottom: 30px;
+        }
+
+        .callout-box {
+            background: var(--p5-red);
+            color: var(--p5-pure-white);
+            padding: 15px 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            transform: rotate(-2deg);
+            border: 2px dashed var(--p5-pure-white);
+        }
+
+        /* Calling Card Visual Element */
+        .calling-card {
+            background: var(--p5-pure-white);
+            color: var(--p5-black);
+            padding: 40px;
+            transform: rotate(4deg);
+            border: 6px solid var(--p5-red);
+            box-shadow: -15px 15px 0px var(--p5-charcoal);
+            position: relative;
+            text-align: center;
+        }
+
+        .calling-card h3 {
+            font-family: 'Teko', sans-serif;
+            font-size: 3rem;
+            color: var(--p5-red);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .calling-card p {
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        /* About & Grid Cards */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .p5-card {
+            background: var(--p5-charcoal);
+            border: 3px solid var(--p5-pure-white);
+            padding: 40px;
+            position: relative;
+            transform: skew(-2deg);
+            box-shadow: 8px 8px 0px var(--p5-red);
+            transition: 0.3s ease;
+        }
+
+        .p5-card:hover {
+            transform: skew(-2deg) translateY(-5px);
+            box-shadow: 12px 12px 0px var(--p5-yellow);
+        }
+
+        .p5-card-inner {
+            transform: skew(2deg);
+        }
+
+        .p5-card h3 {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.8rem;
+            color: var(--p5-yellow);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--p5-red);
+            display: inline-block;
+        }
+
+        .p5-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--p5-white);
+            margin-bottom: 15px;
+        }
+
+        /* Education & Scholarship Layout */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        ul.p5-list {
+            list-style: none;
+        }
+
+        ul.p5-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        ul.p5-list li::before {
+            content: "■";
+            position: absolute;
+            left: 0;
+            color: var(--p5-red);
+            font-size: 1.2rem;
+        }
+
+        /* Skills Tags */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: var(--p5-red);
+            color: var(--p5-pure-white);
+            font-family: 'Teko', sans-serif;
+            font-size: 1.6rem;
+            padding: 5px 20px;
+            text-transform: uppercase;
+            transform: skew(-10deg);
+            border: 2px solid var(--p5-pure-white);
+            box-shadow: 4px 4px 0px var(--p5-yellow);
+            transition: 0.2s;
+        }
+
+        .skill-tag:hover {
+            background: var(--p5-yellow);
+            color: var(--p5-black);
+            transform: skew(-10deg) scale(1.05);
+        }
+
+        /* Organizations Badges */
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .org-badge {
+            background: var(--p5-gray);
+            border: 3px solid var(--p5-white);
+            padding: 25px;
+            text-align: center;
+            transform: rotate(-1deg);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            box-shadow: 6px 6px 0px var(--p5-red);
+            transition: 0.3s;
+        }
+
+        .org-badge:hover {
+            background: var(--p5-white);
+            color: var(--p5-black);
+            transform: rotate(1deg) scale(1.03);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--p5-charcoal);
+            border-top: 4px solid var(--p5-red);
+            text-align: center;
+            padding: 40px;
+            font-family: 'Teko', sans-serif;
+            font-size: 2rem;
+            color: var(--p5-yellow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        /* Responsive */
+        @media(max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .edu-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                padding: 15px 20px;
+            }
+            nav ul {
+                gap: 15px;
+            }
+            nav a {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
-<body class="bg-[#0D0D0D] text-zinc-100 min-h-screen font-sans">
+<body>
 
-    <!-- Header -->
-    <header class="max-w-3xl mx-auto px-6 py-8 flex justify-between items-center border-b border-zinc-800">
-        <span class="font-bold tracking-wider text-red-500">PORTFOLIO</span>
-        <nav class="space-x-6 text-sm text-zinc-400">
-            <a href="#projects" class="hover:text-white">Projects</a>
-            <a href="#contact" class="hover:text-white">Contact</a>
+    <div class="bg-stripes"></div>
+
+    <!-- Header Navbar -->
+    <header>
+        <div class="logo">B. Aguinaldo</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#organizations">Organizations</a></li>
+            </ul>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-3xl mx-auto px-6 py-16 space-y-16">
-        
-        <!-- Hero Intro -->
-        <section class="space-y-4">
-            <h1 class="text-4xl md:text-5xl font-extrabold">
-                Hello, I'm a Developer & Designer.
-            </h1>
-            <p class="text-zinc-400 leading-relaxed">
-                Welcome to my digital space. I love building web applications, clean user interfaces, and solving interesting problems with code.
-            </p>
-        </section>
+    <div class="container">
 
-        <!-- Projects Section -->
-        <section id="projects" class="space-y-6">
-            <h2 class="text-xl font-bold border-b border-zinc-800 pb-3">My Projects</h2>
-            <div class="p-6 bg-zinc-900/50 border border-zinc-800 rounded-xl space-y-2">
-                <h3 class="text-lg font-semibold text-white">First Web Project</h3>
-                <p class="text-sm text-zinc-400">
-                    A brief description of what this project does and the technologies used to build it.
-                </p>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-inner">
+                    <h1>Take Your Heart</h1>
+                    <p>I am a 3rd-year Bachelor of Science in Information Technology student at the Polytechnic University of the Philippines (PUP) and a multi-scholar. Passionate about building functional and user-centric software, specializing in back-end web development and database management.</p>
+                    <div class="callout-box">Status: Ready for Operation</div>
+                </div>
+            </div>
+            <div class="calling-card">
+                <h3>Target Locked</h3>
+                <p>Benedick M. Aguinaldo<br><span style="font-size: 0.9rem; color: var(--p5-charcoal);">BSIT — PUP Main Sta. Mesa</span></p>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="p-6 bg-zinc-900/30 border border-zinc-800 rounded-xl text-center space-y-4">
-            <h2 class="text-xl font-bold">Get in Touch</h2>
-            <p class="text-sm text-zinc-400">Feel free to reach out for collaborations or questions.</p>
-            <a href="mailto:your.email@example.com" class="inline-block px-5 py-2.5 bg-white text-black font-medium rounded-lg text-sm hover:bg-zinc-200 transition">
-                Send Email
-            </a>
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title"><span>Profile Overview</span></h2>
+            <div class="p5-card">
+                <div class="p5-card-inner">
+                    <h3>The Phantom Coder</h3>
+                    <p>Driven by a blend of technical precision and creative problem-solving, I love turning complex ideas into clean, efficient, and visually compelling digital solutions. Whether orchestrating database architectures or engineering robust back-end systems, every project is executed with absolute focus.</p>
+                </div>
+            </div>
         </section>
 
-    </main>
+        <!-- Education & Scholarship Section -->
+        <section id="education">
+            <h2 class="section-title"><span>Education & Honors</span></h2>
+            <div class="edu-grid">
+                <div class="p5-card" style="box-shadow: 8px 8px 0px var(--p5-yellow);">
+                    <div class="p5-card-inner">
+                        <h3>Academic Record</h3>
+                        <p><strong>Bachelor of Science in Information Technology (BSIT)</strong></p>
+                        <p>Polytechnic University of the Philippines (PUP) – Main Sta. Mesa, Manila</p>
+                        <p><em>Timeline:</em> 2024 – Present (3rd Year)</p>
+                        <p><em>Standing:</em> President Lister’s, Dean Lister’s</p>
+                    </div>
+                </div>
+                <div class="p5-card">
+                    <div class="p5-card-inner">
+                        <h3>Scholarships</h3>
+                        <ul class="p5-list">
+                            <li>DOST Undergraduate Scholar – Department of Science and Technology</li>
+                            <li>QCYDO Scholar – Quezon City Youth Development Office</li>
+                            <li>SM Scholar – SM Foundation passer</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title"><span>Skills & Arsenal</span></h2>
+            <div class="p5-card">
+                <div class="p5-card-inner">
+                    <h3>Technical Capabilities</h3>
+                    <p style="margin-bottom: 10px; font-weight: bold; color: var(--p5-yellow);">Languages & Core Technologies:</p>
+                    <div class="skills-container">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+
+                    <p style="margin: 20px 0 10px 0; font-weight: bold; color: var(--p5-yellow);">Databases & Backend:</p>
+                    <div class="skills-container">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Apache / XAMPP</span>
+                        <span class="skill-tag">CRUD Operations</span>
+                        <span class="skill-tag">Database DDL/DML</span>
+                    </div>
+
+                    <p style="margin: 20px 0 10px 0; font-weight: bold; color: var(--p5-yellow);">Frameworks & Methodology:</p>
+                    <div class="skills-container">
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Responsive Design</span>
+                        <span class="skill-tag">UI/UX Prototyping</span>
+                        <span class="skill-tag">Dark-Mode UI</span>
+                        <span class="skill-tag">UML Architecture</span>
+                    </div>
+
+                    <p style="margin: 20px 0 10px 0; font-weight: bold; color: var(--p5-yellow);">Tools & Environments:</p>
+                    <div class="skills-container">
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Vercel</span>
+                        <span class="skill-tag">Adobe Lightroom & Photoshop</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Organizations Section -->
+        <section id="organizations">
+            <h2 class="section-title"><span>Organizations</span></h2>
+            <div class="org-grid">
+                <div class="org-badge">Google Developer Group (GDG)<br><span style="font-size: 0.85rem; color: var(--p5-yellow);">Member</span></div>
+                <div class="org-badge">Cisco NetConnect PUP-Manila<br><span style="font-size: 0.85rem; color: var(--p5-yellow);">Member</span></div>
+                <div class="org-badge">ARK (AcademiTech Research)<br><span style="font-size: 0.85rem; color: var(--p5-yellow);">Member</span></div>
+                <div class="org-badge">IBITS (Best IT Students)<br><span style="font-size: 0.85rem; color: var(--p5-yellow);">Member</span></div>
+            </div>
+        </section>
+
+    </div>
 
     <!-- Footer -->
-    <footer class="max-w-3xl mx-auto px-6 py-8 border-t border-zinc-800 text-center text-xs text-zinc-500">
-        Built with HTML & Tailwind. Deployed on Vercel.
+    <footer>
+        <p>The Show's Over — Let's Build Something Great.</p>
     </footer>
 
+    <script>
+        // Simple interactive Persona 5 style console greeting
+        console.log("%c★ PHANTOM THIEVES OF HEARTS ★", "color: #E60012; font-size: 20px; font-weight: bold; background: #0D0D0D; padding: 5px;");
+        console.log("Welcome to Benedick M. Aguinaldo's Portfolio. System integrity: 100%.");
+    </script>
 </body>
 </html>
