@@ -145,4 +145,489 @@
         }
 
         .hero-content h1 span {
-            color
+            color: var(--p5-red);
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            color: var(--p5-gray);
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(217, 4, 4, 0.1);
+            color: var(--p5-red);
+            border: 1px solid rgba(217, 4, 4, 0.3);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Profile Card & Aligned Image Styling */
+        .profile-card {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-left: 4px solid var(--p5-red);
+        }
+
+        .profile-img-container {
+            width: 100%;
+            height: 260px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid var(--p5-border);
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Prevents cropping out any part of the ID picture */
+            object-position: center bottom; /* Aligns toward the bottom to show shoulders and face fully */
+            filter: grayscale(5%) contrast(105%);
+            transition: filter 0.3s ease;
+        }
+
+        .profile-img-container img:hover {
+            filter: grayscale(0%);
+        }
+
+        .profile-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .profile-card p {
+            color: var(--p5-gray);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--p5-border);
+            padding-top: 16px;
+        }
+
+        .profile-meta div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-meta span:first-child {
+            color: var(--p5-gray);
+        }
+
+        .profile-meta span:last-child {
+            font-weight: 500;
+        }
+
+        /* Cards & Grids */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .pro-card {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 28px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .pro-card:hover {
+            border-color: var(--p5-red);
+            transform: translateY(-2px);
+        }
+
+        .pro-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--p5-light);
+        }
+
+        .pro-card .subtitle {
+            font-size: 0.9rem;
+            color: var(--p5-red);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .pro-card p, .pro-card li {
+            font-size: 0.95rem;
+            color: var(--p5-gray);
+        }
+
+        ul.styled-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        ul.styled-list li {
+            position: relative;
+            padding-left: 18px;
+        }
+
+        ul.styled-list li::before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: var(--p5-red);
+        }
+
+        /* Certification Card Styling */
+        .cert-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .cert-img-wrapper {
+            width: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--p5-border);
+            background: #000;
+        }
+
+        .cert-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-img-wrapper img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Skills Matrix */
+        .skills-category {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .skills-category h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--p5-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skills-category h4::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--p5-red);
+            border-radius: 50%;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--p5-border);
+            color: var(--p5-light);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .tech-tag:hover {
+            background-color: rgba(217, 4, 4, 0.15);
+            border-color: rgba(217, 4, 4, 0.4);
+        }
+
+        /* Organizations Section */
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .org-item {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .org-item span:first-child {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--p5-light);
+        }
+
+        .org-item span:last-child {
+            font-size: 0.85rem;
+            color: var(--p5-gray);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--p5-border);
+            background-color: rgba(18, 18, 18, 0.98);
+            padding: 32px 48px;
+            text-align: center;
+            color: var(--p5-gray);
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--p5-red);
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media(max-width: 900px) {
+            .hero, .cert-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            header {
+                padding: 16px 24px;
+            }
+            nav ul {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pattern"></div>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="logo">Benedick<span>//</span></div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#organizations">Organizations</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">BSIT Student & Developer</div>
+                <h1>Engineering backend solutions with <span>precision.</span></h1>
+                <p>I am a 3rd-year Bachelor of Science in Information Technology student at the Polytechnic University of the Philippines (PUP) and a multi-scholar. Passionate about building functional and user-centric software, specializing in back-end web development and database management.</p>
+            </div>
+            <div class="profile-card">
+                <!-- Profile Image Fully Contained -->
+                <div class="profile-img-container">
+                    <img src="image.png" alt="Benedick M. Aguinaldo Profile Picture">
+                </div>
+                <h3>Benedick M. Aguinaldo</h3>
+                <p>Backend Developer & Database Architect</p>
+                <div class="profile-meta">
+                    <div>
+                        <span>Institution</span>
+                        <span>PUP Main Sta. Mesa</span>
+                    </div>
+                    <div>
+                        <span>Year Level</span>
+                        <span>3rd Year (BSIT)</span>
+                    </div>
+                    <div>
+                        <span>Status</span>
+                        <span style="color: #4BB543;">Active Scholar</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <h2 class="section-title">Professional Profile</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="pro-card">
+                <p>Driven by a blend of technical precision and creative problem-solving, I love turning complex ideas into clean, efficient, and visually compelling digital solutions. My core focus lies in architecting robust server-side systems, optimizing database operations, and ensuring structural integrity across modern applications.</p>
+            </div>
+        </section>
+
+        <!-- Education & Scholarship Section -->
+        <section id="education">
+            <div class="section-header">
+                <h2 class="section-title">Education & Honors</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card-grid">
+                <div class="pro-card">
+                    <h4>Academic Background</h4>
+                    <div class="subtitle">Polytechnic University of the Philippines</div>
+                    <p style="margin-bottom: 12px;"><strong>Degree:</strong> Bachelor of Science in Information Technology (BSIT)</p>
+                    <p style="margin-bottom: 12px;"><strong>Location:</strong> Main Sta. Mesa, Manila</p>
+                    <p style="margin-bottom: 12px;"><strong>Timeline:</strong> 2024 – Present (3rd Year)</p>
+                    <p><strong>Standing:</strong> President Lister’s, Dean Lister’s</p>
+                </div>
+                <div class="pro-card">
+                    <h4>Scholarships & Grants</h4>
+                    <div class="subtitle">Institutional Support</div>
+                    <ul class="styled-list">
+                        <li><strong>DOST Undergraduate Scholar</strong> – Department of Science and Technology</li>
+                        <li><strong>QCYDO Scholar</strong> – Quezon City Youth Development Office</li>
+                        <li><strong>SM Scholar</strong> – SM Foundation passer</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="pro-card">
+                <div class="cert-container">
+                    <div class="cert-img-wrapper">
+                        <!-- Certification Image Attached -->
+                        <img src="image_2.png" alt="Introduction to Cloud Certificate - IBM & Cognitive Class">
+                    </div>
+                    <div>
+                        <h4>Introduction to Cloud</h4>
+                        <div class="subtitle">Cognitive Class (Powered by IBM Developer Skills Network)</div>
+                        <p style="margin-bottom: 12px;"><strong>Course Code:</strong> CC0101EN</p>
+                        <p style="margin-bottom: 12px;"><strong>Issued On:</strong> October 19, 2026</p>
+                        <p>Successfully completed and earned a passing grade, validating fundamental cloud computing concepts and architectures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Languages & Core Technologies</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h4>Databases & Backend Infrastructure</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Apache / XAMPP</span>
+                    <span class="tech-tag">CRUD Operations</span>
+                    <span class="tech-tag">Database DDL/DML Design</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h4>Frameworks & Design Methodologies</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">Responsive Web Design</span>
+                    <span class="tech-tag">UI/UX Prototyping</span>
+                    <span class="tech-tag">Dark-Mode Interface Design</span>
+                    <span class="tech-tag">UML Component & Deployment Diagrams</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h4>Development Tools & Environments</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">Visual Studio Code</span>
+                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">Vercel</span>
+                    <span class="tech-tag">Adobe Lightroom & Photoshop</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Organizations Section -->
+        <section id="organizations">
+            <div class="section-header">
+                <h2 class="section-title">Organizations</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="org-grid">
+                <div class="org-item">
+                    <span>Google Developer Group (GDG)</span>
+                    <span>Member</span>
+                </div>
+                <div class="org-item">
+                    <span>Cisco NetConnect PUP-Manila</span>
+                    <span>Member</span>
+                </div>
+                <div class="org-item">
+                    <span>ARK (AcademiTech Research & Knowledge)</span>
+                    <span>Member</span>
+                </div>
+                <div class="org-item">
+                    <span>IBITS (Institute of Best IT Students)</span>
+                    <span>Member</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Benedick M. Aguinaldo. Built with <span>precision</span> and clean code.</p>
+    </footer>
+
+</body>
+</html>
