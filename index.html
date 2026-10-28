@@ -403,43 +403,48 @@
             color: var(--p5-gray);
         }
 
-        /* Contact Section Styling */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-        }
-
-        .contact-card {
-            background-color: var(--p5-card-bg);
-            border: 1px solid var(--p5-border);
-            border-radius: 8px;
-            padding: 20px;
-            text-decoration: none;
+        /* Stacked Contact List Styling */
+        .contact-stack {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 12px;
+        }
+
+        .contact-row {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 6px;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
             transition: border-color 0.2s ease, transform 0.2s ease;
         }
 
-        .contact-card:hover {
+        .contact-row:hover {
             border-color: var(--p5-red);
-            transform: translateY(-2px);
+            transform: translateX(4px);
         }
 
-        .contact-card .contact-label {
-            font-size: 0.85rem;
-            color: var(--p5-red);
+        .contact-row .contact-label {
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-size: 1rem;
+            color: var(--p5-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .contact-card .contact-value {
+        .contact-row .contact-label::before {
+            content: "▪";
+            color: var(--p5-red);
+        }
+
+        .contact-row .contact-value {
             font-size: 0.95rem;
-            color: var(--p5-light);
+            color: var(--p5-gray);
             font-weight: 500;
-            word-break: break-all;
         }
 
         /* Footer */
@@ -462,6 +467,11 @@
             .hero, .cert-container {
                 grid-template-columns: 1fr;
                 gap: 32px;
+            }
+            .contact-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
             }
             header {
                 padding: 16px 24px;
@@ -668,24 +678,24 @@
                 <h2 class="section-title">Contact Channels</h2>
                 <div class="section-line"></div>
             </div>
-            <div class="contact-grid">
-                <a href="space" class="contact-card" target="_blank">
+            <div class="contact-stack">
+                <a href="space" class="contact-row" target="_blank">
                     <span class="contact-label">Email</span>
                     <span class="contact-value">space</span>
                 </a>
-                <a href="space" class="contact-card" target="_blank">
+                <a href="space" class="contact-row" target="_blank">
                     <span class="contact-label">PUP Webmail</span>
                     <span class="contact-value">space</span>
                 </a>
-                <a href="space" class="contact-card" target="_blank">
+                <a href="space" class="contact-row" target="_blank">
                     <span class="contact-label">Phone</span>
                     <span class="contact-value">space</span>
                 </a>
-                <a href="space" class="contact-card" target="_blank">
+                <a href="space" class="contact-row" target="_blank">
                     <span class="contact-label">LinkedIn</span>
                     <span class="contact-value">space</span>
                 </a>
-                <a href="space" class="contact-card" target="_blank">
+                <a href="space" class="contact-row" target="_blank">
                     <span class="contact-label">Facebook</span>
                     <span class="contact-value">space</span>
                 </a>
