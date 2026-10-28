@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Tailwind CSS CDN for instant styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import "tailwindcss";
+    </style>
+</head>
+<body class="bg-[#0D0D0D] text-zinc-100 min-h-screen font-sans">
+
+    <!-- Header -->
+    <header class="max-w-3xl mx-auto px-6 py-8 flex justify-between items-center border-b border-zinc-800">
+        <span class="font-bold tracking-wider text-red-500">PORTFOLIO</span>
+        <nav class="space-x-6 text-sm text-zinc-400">
+            <a href="#projects" class="hover:text-white">Projects</a>
+            <a href="#contact" class="hover:text-white">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-6 py-16 space-y-16">
+        
+        <!-- Hero Intro -->
+        <section class="space-y-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold">
+                Hello, I'm a Developer & Designer.
+            </h1>
+            <p class="text-zinc-400 leading-relaxed">
+                Welcome to my digital space. I love building web applications, clean user interfaces, and solving interesting problems with code.
+            </p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="space-y-6">
+            <h2 class="text-xl font-bold border-b border-zinc-800 pb-3">My Projects</h2>
+            <div class="p-6 bg-zinc-900/50 border border-zinc-800 rounded-xl space-y-2">
+                <h3 class="text-lg font-semibold text-white">First Web Project</h3>
+                <p class="text-sm text-zinc-400">
+                    A brief description of what this project does and the technologies used to build it.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="p-6 bg-zinc-900/30 border border-zinc-800 rounded-xl text-center space-y-4">
+            <h2 class="text-xl font-bold">Get in Touch</h2>
+            <p class="text-sm text-zinc-400">Feel free to reach out for collaborations or questions.</p>
+            <a href="mailto:your.email@example.com" class="inline-block px-5 py-2.5 bg-white text-black font-medium rounded-lg text-sm hover:bg-zinc-200 transition">
+                Send Email
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-3xl mx-auto px-6 py-8 border-t border-zinc-800 text-center text-xs text-zinc-500">
+        Built with HTML & Tailwind. Deployed on Vercel.
+    </footer>
+
+</body>
+</html>
