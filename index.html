@@ -3,374 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benedick M. Aguinaldo — Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Teko:wght@500;700&display=swap" rel="stylesheet">
+    <title>Benedick M. Aguinaldo — Software Engineer & BSIT Student</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --p5-red: #E60012;
-            --p5-dark-red: #B3000E;
-            --p5-black: #0D0D0D;
-            --p5-charcoal: #1A1A1A;
-            --p5-gray: #2B2B2B;
-            --p5-white: #F2F2F2;
-            --p5-pure-white: #FFFFFF;
-            --p5-yellow: #FFCC00;
+            --p5-red: #D90429;
+            --p5-crimson: #9B021E;
+            --p5-dark: #121212;
+            --p5-card-bg: #1A1A1A;
+            --p5-border: #333333;
+            --p5-light: #F8F9FA;
+            --p5-gray: #A0A0A0;
+            --p5-accent: #FFD166;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            cursor: crosshair;
         }
 
         body {
-            background-color: var(--p5-black);
-            color: var(--p5-white);
-            font-family: 'Montserrat', sans-serif;
+            background-color: var(--p5-dark);
+            color: var(--p5-light);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Comic Book / Dynamic Background Stripes */
-        .bg-stripes {
+        /* Subtle Background Texture */
+        .bg-pattern {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: repeating-linear-gradient(
-                -45deg,
-                rgba(230, 0, 18, 0.03),
-                rgba(230, 0, 18, 0.03) 30px,
-                transparent 30px,
-                transparent 60px
-            );
+            background-image: radial-gradient(rgba(217, 4, 4, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Header / Navbar */
+        /* Navigation Header */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--p5-black);
-            border-bottom: 4px solid var(--p5-red);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--p5-red);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 18px 48px;
             z-index: 1000;
-            transform: skew(-5deg);
         }
 
         .logo {
             font-family: 'Teko', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: var(--p5-pure-white);
+            color: var(--p5-light);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            background: var(--p5-red);
-            padding: 0 15px;
-            transform: skew(5deg);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--p5-red);
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
-            transform: skew(5deg);
+            gap: 32px;
         }
 
         nav a {
-            color: var(--p5-white);
+            color: var(--p5-gray);
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            transition: 0.2s ease;
-            position: relative;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
         }
 
         nav a:hover {
-            color: var(--p5-yellow);
-            text-shadow: 2px 2px var(--p5-red);
+            color: var(--p5-light);
         }
 
-        /* Main Container */
+        /* Container Layout */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 140px auto 80px auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Section Styling */
         section {
-            margin-bottom: 100px;
-            position: relative;
+            margin-bottom: 96px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
         }
 
         .section-title {
             font-family: 'Teko', sans-serif;
-            font-size: 4.5rem;
+            font-size: 2.8rem;
             text-transform: uppercase;
-            color: var(--p5-pure-white);
-            background: var(--p5-red);
-            display: inline-block;
-            padding: 0 25px;
-            transform: skew(-10deg);
-            margin-bottom: 40px;
-            box-shadow: 6px 6px 0px var(--p5-yellow);
+            color: var(--p5-light);
+            letter-spacing: 1px;
+            line-height: 1;
         }
 
-        .section-title span {
-            display: inline-block;
-            transform: skew(10deg);
+        .section-line {
+            height: 2px;
+            flex-grow: 1;
+            background: linear-gradient(90deg, var(--p5-red), transparent);
         }
 
         /* Hero Section */
         .hero {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: 1.4fr 0.8fr;
             gap: 40px;
             align-items: center;
-            min-height: 70vh;
+            min-height: 60vh;
         }
 
-        .hero-content {
-            background: var(--p5-charcoal);
-            border: 4px solid var(--p5-pure-white);
-            padding: 50px;
-            position: relative;
-            transform: skew(-3deg);
-            box-shadow: 12px 12px 0px var(--p5-red);
-        }
-
-        .hero-inner {
-            transform: skew(3deg);
-        }
-
-        .hero h1 {
-            font-family: 'Teko', sans-serif;
-            font-size: 5rem;
-            line-height: 0.9;
-            text-transform: uppercase;
-            color: var(--p5-yellow);
-            margin-bottom: 20px;
-            text-shadow: 3px 3px var(--p5-red);
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            line-height: 1.6;
-            color: var(--p5-white);
-            margin-bottom: 30px;
-        }
-
-        .callout-box {
-            background: var(--p5-red);
-            color: var(--p5-pure-white);
-            padding: 15px 25px;
+        .hero-content h1 {
+            font-size: 3.2rem;
             font-weight: 700;
-            font-size: 1.1rem;
-            display: inline-block;
-            transform: rotate(-2deg);
-            border: 2px dashed var(--p5-pure-white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
         }
 
-        /* Calling Card Visual Element */
-        .calling-card {
-            background: var(--p5-pure-white);
-            color: var(--p5-black);
-            padding: 40px;
-            transform: rotate(4deg);
-            border: 6px solid var(--p5-red);
-            box-shadow: -15px 15px 0px var(--p5-charcoal);
-            position: relative;
-            text-align: center;
-        }
-
-        .calling-card h3 {
-            font-family: 'Teko', sans-serif;
-            font-size: 3rem;
+        .hero-content h1 span {
             color: var(--p5-red);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
         }
 
-        .calling-card p {
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-transform: uppercase;
+        .hero-content p {
+            font-size: 1.125rem;
+            color: var(--p5-gray);
+            margin-bottom: 32px;
+            max-width: 600px;
         }
 
-        /* About & Grid Cards */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        .p5-card {
-            background: var(--p5-charcoal);
-            border: 3px solid var(--p5-pure-white);
-            padding: 40px;
-            position: relative;
-            transform: skew(-2deg);
-            box-shadow: 8px 8px 0px var(--p5-red);
-            transition: 0.3s ease;
-        }
-
-        .p5-card:hover {
-            transform: skew(-2deg) translateY(-5px);
-            box-shadow: 12px 12px 0px var(--p5-yellow);
-        }
-
-        .p5-card-inner {
-            transform: skew(2deg);
-        }
-
-        .p5-card h3 {
-            font-family: 'Teko', sans-serif;
-            font-size: 2.8rem;
-            color: var(--p5-yellow);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            border-bottom: 3px solid var(--p5-red);
+        .hero-badge {
             display: inline-block;
+            background-color: rgba(217, 4, 4, 0.1);
+            color: var(--p5-red);
+            border: 1px solid rgba(217, 4, 4, 0.3);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .p5-card p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--p5-white);
-            margin-bottom: 15px;
-        }
-
-        /* Education & Scholarship Layout */
-        .edu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        ul.p5-list {
-            list-style: none;
-        }
-
-        ul.p5-list li {
+        .profile-card {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 32px;
             position: relative;
-            padding-left: 30px;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-left: 4px solid var(--p5-red);
         }
 
-        ul.p5-list li::before {
-            content: "■";
+        .profile-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .profile-card p {
+            color: var(--p5-gray);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--p5-border);
+            padding-top: 16px;
+        }
+
+        .profile-meta div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-meta span:first-child {
+            color: var(--p5-gray);
+        }
+
+        .profile-meta span:last-child {
+            font-weight: 500;
+        }
+
+        /* Cards & Grids */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .pro-card {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 28px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .pro-card:hover {
+            border-color: var(--p5-red);
+            transform: translateY(-2px);
+        }
+
+        .pro-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--p5-light);
+        }
+
+        .pro-card .subtitle {
+            font-size: 0.9rem;
+            color: var(--p5-red);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .pro-card p, .pro-card li {
+            font-size: 0.95rem;
+            color: var(--p5-gray);
+        }
+
+        ul.styled-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        ul.styled-list li {
+            position: relative;
+            padding-left: 18px;
+        }
+
+        ul.styled-list li::before {
+            content: "▪";
             position: absolute;
             left: 0;
             color: var(--p5-red);
-            font-size: 1.2rem;
         }
 
-        /* Skills Tags */
-        .skills-container {
+        /* Skills Matrix */
+        .skills-category {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .skills-category h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--p5-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skills-category h4::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--p5-red);
+            border-radius: 50%;
+        }
+
+        .tag-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
         }
 
-        .skill-tag {
-            background: var(--p5-red);
-            color: var(--p5-pure-white);
-            font-family: 'Teko', sans-serif;
-            font-size: 1.6rem;
-            padding: 5px 20px;
-            text-transform: uppercase;
-            transform: skew(-10deg);
-            border: 2px solid var(--p5-pure-white);
-            box-shadow: 4px 4px 0px var(--p5-yellow);
-            transition: 0.2s;
+        .tech-tag {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--p5-border);
+            color: var(--p5-light);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
         }
 
-        .skill-tag:hover {
-            background: var(--p5-yellow);
-            color: var(--p5-black);
-            transform: skew(-10deg) scale(1.05);
+        .tech-tag:hover {
+            background-color: rgba(217, 4, 4, 0.15);
+            border-color: rgba(217, 4, 4, 0.4);
         }
 
-        /* Organizations Badges */
+        /* Organizations Section */
         .org-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
         }
 
-        .org-badge {
-            background: var(--p5-gray);
-            border: 3px solid var(--p5-white);
-            padding: 25px;
-            text-align: center;
-            transform: rotate(-1deg);
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            box-shadow: 6px 6px 0px var(--p5-red);
-            transition: 0.3s;
+        .org-item {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .org-badge:hover {
-            background: var(--p5-white);
-            color: var(--p5-black);
-            transform: rotate(1deg) scale(1.03);
+        .org-item span:first-child {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--p5-light);
+        }
+
+        .org-item span:last-child {
+            font-size: 0.85rem;
+            color: var(--p5-gray);
         }
 
         /* Footer */
         footer {
-            background-color: var(--p5-charcoal);
-            border-top: 4px solid var(--p5-red);
+            border-top: 1px solid var(--p5-border);
+            background-color: rgba(18, 18, 18, 0.98);
+            padding: 32px 48px;
             text-align: center;
-            padding: 40px;
-            font-family: 'Teko', sans-serif;
-            font-size: 2rem;
-            color: var(--p5-yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
+            color: var(--p5-gray);
+            font-size: 0.9rem;
         }
 
-        /* Responsive */
+        footer span {
+            color: var(--p5-red);
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
         @media(max-width: 900px) {
             .hero {
                 grid-template-columns: 1fr;
-            }
-            .edu-grid {
-                grid-template-columns: 1fr;
+                gap: 32px;
             }
             header {
-                padding: 15px 20px;
+                padding: 16px 24px;
             }
             nav ul {
-                gap: 15px;
-            }
-            nav a {
-                font-size: 0.9rem;
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-stripes"></div>
+    <div class="bg-pattern"></div>
 
-    <!-- Header Navbar -->
+    <!-- Navigation Header -->
     <header>
-        <div class="logo">B. Aguinaldo</div>
+        <div class="logo">B. Aguinaldo<span>//</span></div>
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
@@ -386,107 +401,142 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <div class="hero-inner">
-                    <h1>Take Your Heart</h1>
-                    <p>I am a 3rd-year Bachelor of Science in Information Technology student at the Polytechnic University of the Philippines (PUP) and a multi-scholar. Passionate about building functional and user-centric software, specializing in back-end web development and database management.</p>
-                    <div class="callout-box">Status: Ready for Operation</div>
-                </div>
+                <div class="hero-badge">BSIT Student & Developer</div>
+                <h1>Engineering backend solutions with <span>precision.</span></h1>
+                <p>I am a 3rd-year Bachelor of Science in Information Technology student at the Polytechnic University of the Philippines (PUP) and a multi-scholar. Passionate about building functional and user-centric software, specializing in back-end web development and database management.</p>
             </div>
-            <div class="calling-card">
-                <h3>Target Locked</h3>
-                <p>Benedick M. Aguinaldo<br><span style="font-size: 0.9rem; color: var(--p5-charcoal);">BSIT — PUP Main Sta. Mesa</span></p>
+            <div class="profile-card">
+                <h3>Benedick M. Aguinaldo</h3>
+                <p>Backend Developer & Database Architect</p>
+                <div class="profile-meta">
+                    <div>
+                        <span>Institution</span>
+                        <span>PUP Main Sta. Mesa</span>
+                    </div>
+                    <div>
+                        <span>Year Level</span>
+                        <span>3rd Year (BSIT)</span>
+                    </div>
+                    <div>
+                        <span>Status</span>
+                        <span style="color: #4BB543;">Active Scholar</span>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- About Section -->
         <section id="about">
-            <h2 class="section-title"><span>Profile Overview</span></h2>
-            <div class="p5-card">
-                <div class="p5-card-inner">
-                    <h3>The Phantom Coder</h3>
-                    <p>Driven by a blend of technical precision and creative problem-solving, I love turning complex ideas into clean, efficient, and visually compelling digital solutions. Whether orchestrating database architectures or engineering robust back-end systems, every project is executed with absolute focus.</p>
-                </div>
+            <div class="section-header">
+                <h2 class="section-title">Professional Profile</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="pro-card">
+                <p>Driven by a blend of technical precision and creative problem-solving, I love turning complex ideas into clean, efficient, and visually compelling digital solutions. My core focus lies in architecting robust server-side systems, optimizing database operations, and ensuring structural integrity across modern applications.</p>
             </div>
         </section>
 
         <!-- Education & Scholarship Section -->
         <section id="education">
-            <h2 class="section-title"><span>Education & Honors</span></h2>
-            <div class="edu-grid">
-                <div class="p5-card" style="box-shadow: 8px 8px 0px var(--p5-yellow);">
-                    <div class="p5-card-inner">
-                        <h3>Academic Record</h3>
-                        <p><strong>Bachelor of Science in Information Technology (BSIT)</strong></p>
-                        <p>Polytechnic University of the Philippines (PUP) – Main Sta. Mesa, Manila</p>
-                        <p><em>Timeline:</em> 2024 – Present (3rd Year)</p>
-                        <p><em>Standing:</em> President Lister’s, Dean Lister’s</p>
-                    </div>
+            <div class="section-header">
+                <h2 class="section-title">Education & Honors</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card-grid">
+                <div class="pro-card">
+                    <h4>Academic Background</h4>
+                    <div class="subtitle">Polytechnic University of the Philippines</div>
+                    <p style="margin-bottom: 12px;"><strong>Degree:</strong> Bachelor of Science in Information Technology (BSIT)</p>
+                    <p style="margin-bottom: 12px;"><strong>Location:</strong> Main Sta. Mesa, Manila</p>
+                    <p style="margin-bottom: 12px;"><strong>Timeline:</strong> 2024 – Present (3rd Year)</p>
+                    <p><strong>Standing:</strong> President Lister’s, Dean Lister’s</p>
                 </div>
-                <div class="p5-card">
-                    <div class="p5-card-inner">
-                        <h3>Scholarships</h3>
-                        <ul class="p5-list">
-                            <li>DOST Undergraduate Scholar – Department of Science and Technology</li>
-                            <li>QCYDO Scholar – Quezon City Youth Development Office</li>
-                            <li>SM Scholar – SM Foundation passer</li>
-                        </ul>
-                    </div>
+                <div class="pro-card">
+                    <h4>Scholarships & Grants</h4>
+                    <div class="subtitle">Institutional Support</div>
+                    <ul class="styled-list">
+                        <li><strong>DOST Undergraduate Scholar</strong> – Department of Science and Technology</li>
+                        <li><strong>QCYDO Scholar</strong> – Quezon City Youth Development Office</li>
+                        <li><strong>SM Scholar</strong> – SM Foundation passer</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills">
-            <h2 class="section-title"><span>Skills & Arsenal</span></h2>
-            <div class="p5-card">
-                <div class="p5-card-inner">
-                    <h3>Technical Capabilities</h3>
-                    <p style="margin-bottom: 10px; font-weight: bold; color: var(--p5-yellow);">Languages & Core Technologies:</p>
-                    <div class="skills-container">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">PHP</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">SQL</span>
-                    </div>
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Languages & Core Technologies</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">SQL</span>
+                </div>
+            </div>
 
-                    <p style="margin: 20px 0 10px 0; font-weight: bold; color: var(--p5-yellow);">Databases & Backend:</p>
-                    <div class="skills-container">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">Apache / XAMPP</span>
-                        <span class="skill-tag">CRUD Operations</span>
-                        <span class="skill-tag">Database DDL/DML</span>
-                    </div>
+            <div class="skills-category">
+                <h4>Databases & Backend Infrastructure</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Apache / XAMPP</span>
+                    <span class="tech-tag">CRUD Operations</span>
+                    <span class="tech-tag">Database DDL/DML Design</span>
+                </div>
+            </div>
 
-                    <p style="margin: 20px 0 10px 0; font-weight: bold; color: var(--p5-yellow);">Frameworks & Methodology:</p>
-                    <div class="skills-container">
-                        <span class="skill-tag">Tailwind CSS</span>
-                        <span class="skill-tag">Responsive Design</span>
-                        <span class="skill-tag">UI/UX Prototyping</span>
-                        <span class="skill-tag">Dark-Mode UI</span>
-                        <span class="skill-tag">UML Architecture</span>
-                    </div>
+            <div class="skills-category">
+                <h4>Frameworks & Design Methodologies</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">Responsive Web Design</span>
+                    <span class="tech-tag">UI/UX Prototyping</span>
+                    <span class="tech-tag">Dark-Mode Interface Design</span>
+                    <span class="tech-tag">UML Component & Deployment Diagrams</span>
+                </div>
+            </div>
 
-                    <p style="margin: 20px 0 10px 0; font-weight: bold; color: var(--p5-yellow);">Tools & Environments:</p>
-                    <div class="skills-container">
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Vercel</span>
-                        <span class="skill-tag">Adobe Lightroom & Photoshop</span>
-                    </div>
+            <div class="skills-category">
+                <h4>Development Tools & Environments</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">Visual Studio Code</span>
+                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">Vercel</span>
+                    <span class="tech-tag">Adobe Lightroom & Photoshop</span>
                 </div>
             </div>
         </section>
 
         <!-- Organizations Section -->
         <section id="organizations">
-            <h2 class="section-title"><span>Organizations</span></h2>
+            <div class="section-header">
+                <h2 class="section-title">Organizations</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="org-grid">
-                <div class="org-badge">Google Developer Group (GDG)<br><span style="font-size: 0.85rem; color: var(--p5-yellow);">Member</span></div>
-                <div class="org-badge">Cisco NetConnect PUP-Manila<br><span style="font-size: 0.85rem; color: var(--p5-yellow);">Member</span></div>
-                <div class="org-badge">ARK (AcademiTech Research)<br><span style="font-size: 0.85rem; color: var(--p5-yellow);">Member</span></div>
-                <div class="org-badge">IBITS (Best IT Students)<br><span style="font-size: 0.85rem; color: var(--p5-yellow);">Member</span></div>
+                <div class="org-item">
+                    <span>Google Developer Group (GDG)</span>
+                    <span>Member</span>
+                </div>
+                <div class="org-item">
+                    <span>Cisco NetConnect PUP-Manila</span>
+                    <span>Member</span>
+                </div>
+                <div class="org-item">
+                    <span>ARK (AcademiTech Research & Knowledge)</span>
+                    <span>Member</span>
+                </div>
+                <div class="org-item">
+                    <span>IBITS (Institute of Best IT Students)</span>
+                    <span>Member</span>
+                </div>
             </div>
         </section>
 
@@ -494,13 +544,8 @@
 
     <!-- Footer -->
     <footer>
-        <p>The Show's Over — Let's Build Something Great.</p>
+        <p>© 2026 Benedick M. Aguinaldo. Built with <span>precision</span> and clean code.</p>
     </footer>
 
-    <script>
-        // Simple interactive Persona 5 style console greeting
-        console.log("%c★ PHANTOM THIEVES OF HEARTS ★", "color: #E60012; font-size: 20px; font-weight: bold; background: #0D0D0D; padding: 5px;");
-        console.log("Welcome to Benedick M. Aguinaldo's Portfolio. System integrity: 100%.");
-    </script>
 </body>
 </html>
