@@ -734,15 +734,65 @@
                     <button class="copy-btn" onclick="copyToClipboard('09351597558', this)">Copy Info</button>
                 </div>
                 <a href="https://www.linkedin.com/in/benedick-aguinaldo-381680350/" class="contact-row" target="_blank">
-                    <span class="contact-label">LinkedIn</span>
-                    <span class="contact-value">https://www.linkedin.com/in/benedick-aguinaldo-381680350/</span>
+                    <div class="contact-info-group">
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">https://www.linkedin.com/in/benedick-aguinaldo-381680350/</span>
+                    </div>
                 </a>
                 <a href="https://www.facebook.com/benidick.aguinaldo" class="contact-row" target="_blank">
-                    <span class="contact-label">Facebook</span>
-                    <span class="contact-value">https://www.facebook.com/benidick.aguinaldo</span>
+                    <div class="contact-info-group">
+                        <span class="contact-label">Facebook</span>
+                        <span class="contact-value">https://www.facebook.com/benidick.aguinaldo</span>
+                    </div>
                 </a>
             </div>
         </section>
+
+        <style>
+            .contact-info-group {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+            .copy-btn {
+                background-color: rgba(255, 255, 255, 0.05);
+                border: 1px solid var(--p5-border);
+                color: var(--p5-light);
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-size: 0.875rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                white-space: nowrap;
+            }
+            .copy-btn:hover {
+                background-color: var(--p5-red);
+                border-color: var(--p5-red);
+            }
+            .copy-btn.copied {
+                background-color: #4BB543;
+                border-color: #4BB543;
+                color: #ffffff;
+            }
+        </style>
+
+        <script>
+            function copyToClipboard(text, btnElement) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = btnElement.innerText;
+                    btnElement.innerText = "Copied!";
+                    btnElement.classList.add("copied");
+                    
+                    setTimeout(() => {
+                        btnElement.innerText = originalText;
+                        btnElement.classList.remove("copied");
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            }
+        </script>
 
     </div>
 
