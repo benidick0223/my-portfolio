@@ -1,823 +1,713 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benedicdent</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --p5-red: #D90429;
-            --p5-crimson: #9B021E;
-            --p5-dark: #121212;
-            --p5-card-bg: #1A1A1A;
-            --p5-border: #333333;
-            --p5-light: #F8F9FA;
-            --p5-gray: #A0A0A0;
-            --p5-accent: #FFD166;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--p5-dark);
-            color: var(--p5-light);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Subtle Background Texture */
-        .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: radial-gradient(rgba(217, 4, 4, 0.05) 1px, transparent 1px);
-            background-size: 24px 24px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Navigation Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 2px solid var(--p5-red);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 48px;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-family: 'Teko', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--p5-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo span {
-            color: var(--p5-red);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 32px;
-        }
-
-        nav a {
-            color: var(--p5-gray);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
-
-        nav a:hover {
-            color: var(--p5-light);
-        }
-
-        /* Container Layout */
-        .container {
-            max-width: 1100px;
-            margin: 140px auto 80px auto;
-            padding: 0 24px;
-        }
-
-        section {
-            margin-bottom: 96px;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-
-        .section-title {
-            font-family: 'Teko', sans-serif;
-            font-size: 2.8rem;
-            text-transform: uppercase;
-            color: var(--p5-light);
-            letter-spacing: 1px;
-            line-height: 1;
-        }
-
-        .section-line {
-            height: 2px;
-            flex-grow: 1;
-            background: linear-gradient(90deg, var(--p5-red), transparent);
-        }
-
-        /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1.4fr 0.8fr;
-            gap: 40px;
-            align-items: center;
-            min-height: 60vh;
-        }
-
-        .hero-content h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-content h1 span {
-            color: var(--p5-red);
-        }
-
-        .hero-content p {
-            font-size: 1.125rem;
-            color: var(--p5-gray);
-            margin-bottom: 32px;
-            max-width: 600px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background-color: rgba(217, 4, 4, 0.1);
-            color: var(--p5-red);
-            border: 1px solid rgba(217, 4, 4, 0.3);
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Profile Card & Aligned Image Styling */
-        .profile-card {
-            background-color: var(--p5-card-bg);
-            border: 1px solid var(--p5-border);
-            border-radius: 8px;
-            padding: 24px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-left: 4px solid var(--p5-red);
-        }
-
-        .profile-img-container {
-            width: 100%;
-            height: 260px;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border: 1px solid var(--p5-border);
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .profile-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center bottom;
-            filter: grayscale(5%) contrast(105%);
-            transition: filter 0.3s ease;
-        }
-
-        .profile-img-container img:hover {
-            filter: grayscale(0%);
-        }
-
-        .profile-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .profile-card p {
-            color: var(--p5-gray);
-            font-size: 0.95rem;
-            margin-bottom: 16px;
-        }
-
-        .profile-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            font-size: 0.9rem;
-            border-top: 1px solid var(--p5-border);
-            padding-top: 16px;
-        }
-
-        .profile-meta div {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .profile-meta span:first-child {
-            color: var(--p5-gray);
-        }
-
-        .profile-meta span:last-child {
-            font-weight: 500;
-        }
-
-        /* Cards & Grids */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .pro-card {
-            background-color: var(--p5-card-bg);
-            border: 1px solid var(--p5-border);
-            border-radius: 8px;
-            padding: 28px;
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .pro-card:hover {
-            border-color: var(--p5-red);
-            transform: translateY(-2px);
-        }
-
-        .pro-card h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--p5-light);
-        }
-
-        .pro-card .subtitle {
-            font-size: 0.9rem;
-            color: var(--p5-red);
-            font-weight: 500;
-            margin-bottom: 16px;
-        }
-
-        .pro-card p, .pro-card li {
-            font-size: 0.95rem;
-            color: var(--p5-gray);
-        }
-
-        ul.styled-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        ul.styled-list li {
-            position: relative;
-            padding-left: 18px;
-        }
-
-        ul.styled-list li::before {
-            content: "▪";
-            position: absolute;
-            left: 0;
-            color: var(--p5-red);
-        }
-
-        /* Certification Card Styling */
-        .cert-container {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .cert-img-wrapper {
-            width: 100%;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--p5-border);
-            background: #000;
-        }
-
-        .cert-img-wrapper img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .cert-img-wrapper img:hover {
-            transform: scale(1.02);
-        }
-
-        /* Skills Matrix */
-        .skills-category {
-            background-color: var(--p5-card-bg);
-            border: 1px solid var(--p5-border);
-            border-radius: 8px;
-            padding: 28px;
-            margin-bottom: 24px;
-        }
-
-        .skills-category h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--p5-light);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .skills-category h4::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: var(--p5-red);
-            border-radius: 50%;
-        }
-
-        .tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tech-tag {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--p5-border);
-            color: var(--p5-light);
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: background-color 0.2s;
-        }
-
-        .tech-tag:hover {
-            background-color: rgba(217, 4, 4, 0.15);
-            border-color: rgba(217, 4, 4, 0.4);
-        }
-
-        /* Organizations Section */
-        .org-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-        }
-
-        .org-item {
-            background-color: var(--p5-card-bg);
-            border: 1px solid var(--p5-border);
-            border-radius: 6px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .org-item span:first-child {
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--p5-light);
-        }
-
-        .org-item span:last-child {
-            font-size: 0.85rem;
-            color: var(--p5-gray);
-        }
-
-        /* Stacked Contact List Styling with Copy Buttons */
-        .contact-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .contact-row {
-            background-color: var(--p5-card-bg);
-            border: 1px solid var(--p5-border);
-            border-radius: 6px;
-            padding: 16px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: border-color 0.2s ease;
-        }
-
-        .contact-row:hover {
-            border-color: var(--p5-red);
-        }
-
-        .contact-info-group {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .contact-row .contact-label {
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--p5-light);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-row .contact-label::before {
-            content: "▪";
-            color: var(--p5-red);
-        }
-
-        .contact-row .contact-value {
-            font-size: 0.95rem;
-            color: var(--p5-gray);
-            font-weight: 500;
-            word-break: break-all;
-        }
-
-        .copy-btn {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--p5-border);
-            color: var(--p5-light);
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .copy-btn:hover {
-            background-color: var(--p5-red);
-            border-color: var(--p5-red);
-        }
-
-        .copy-btn.copied {
-            background-color: #4BB543;
-            border-color: #4BB543;
-            color: #ffffff;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--p5-border);
-            background-color: rgba(18, 18, 18, 0.98);
-            padding: 32px 48px;
-            text-align: center;
-            color: var(--p5-gray);
-            font-size: 0.9rem;
-        }
-
-        footer span {
-            color: var(--p5-red);
-            font-weight: 600;
-        }
-
-        /* Responsive Design */
-        @media(max-width: 900px) {
-            .hero, .cert-container {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .contact-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-            .copy-btn {
-                width: 100%;
-                text-align: center;
-            }
-            header {
-                padding: 16px 24px;
-            }
-            nav ul {
-                gap: 20px;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benedick M. Aguinaldo — Software Engineer & BSIT Student</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --p5-red: #D90429;
+            --p5-crimson: #9B021E;
+            --p5-dark: #121212;
+            --p5-card-bg: #1A1A1A;
+            --p5-border: #333333;
+            --p5-light: #F8F9FA;
+            --p5-gray: #A0A0A0;
+            --p5-accent: #FFD166;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--p5-dark);
+            color: var(--p5-light);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Background Texture */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: radial-gradient(rgba(217, 4, 4, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--p5-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 48px;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--p5-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--p5-red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        nav a {
+            color: var(--p5-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--p5-light);
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1100px;
+            margin: 140px auto 80px auto;
+            padding: 0 24px;
+        }
+
+        section {
+            margin-bottom: 96px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            color: var(--p5-light);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .section-line {
+            height: 2px;
+            flex-grow: 1;
+            background: linear-gradient(90deg, var(--p5-red), transparent);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content h1 span {
+            color: var(--p5-red);
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            color: var(--p5-gray);
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(217, 4, 4, 0.1);
+            color: var(--p5-red);
+            border: 1px solid rgba(217, 4, 4, 0.3);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Profile Card & Aligned Image Styling */
+        .profile-card {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-left: 4px solid var(--p5-red);
+        }
+
+        .profile-img-container {
+            width: 100%;
+            height: 260px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid var(--p5-border);
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center bottom;
+            filter: grayscale(5%) contrast(105%);
+            transition: filter 0.3s ease;
+        }
+
+        .profile-img-container img:hover {
+            filter: grayscale(0%);
+        }
+
+        .profile-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .profile-card p {
+            color: var(--p5-gray);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--p5-border);
+            padding-top: 16px;
+        }
+
+        .profile-meta div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-meta span:first-child {
+            color: var(--p5-gray);
+        }
+
+        .profile-meta span:last-child {
+            font-weight: 500;
+        }
+
+        /* Cards & Grids */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .pro-card {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 28px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .pro-card:hover {
+            border-color: var(--p5-red);
+            transform: translateY(-2px);
+        }
+
+        .pro-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--p5-light);
+        }
+
+        .pro-card .subtitle {
+            font-size: 0.9rem;
+            color: var(--p5-red);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .pro-card p, .pro-card li {
+            font-size: 0.95rem;
+            color: var(--p5-gray);
+        }
+
+        ul.styled-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        ul.styled-list li {
+            position: relative;
+            padding-left: 18px;
+        }
+
+        ul.styled-list li::before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: var(--p5-red);
+        }
+
+        /* Certification Card Styling */
+        .cert-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .cert-img-wrapper {
+            width: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--p5-border);
+            background: #000;
+        }
+
+        .cert-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-img-wrapper img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Skills Matrix */
+        .skills-category {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 8px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .skills-category h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--p5-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skills-category h4::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--p5-red);
+            border-radius: 50%;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--p5-border);
+            color: var(--p5-light);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .tech-tag:hover {
+            background-color: rgba(217, 4, 4, 0.15);
+            border-color: rgba(217, 4, 4, 0.4);
+        }
+
+        /* Organizations Section */
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .org-item {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .org-item span:first-child {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--p5-light);
+        }
+
+        .org-item span:last-child {
+            font-size: 0.85rem;
+            color: var(--p5-gray);
+        }
+
+        /* Stacked Contact List Styling */
+        .contact-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-row {
+            background-color: var(--p5-card-bg);
+            border: 1px solid var(--p5-border);
+            border-radius: 6px;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .contact-row:hover {
+            border-color: var(--p5-red);
+            transform: translateX(4px);
+        }
+
+        .contact-row .contact-label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--p5-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-row .contact-label::before {
+            content: "▪";
+            color: var(--p5-red);
+        }
+
+        .contact-row .contact-value {
+            font-size: 0.95rem;
+            color: var(--p5-gray);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--p5-border);
+            background-color: rgba(18, 18, 18, 0.98);
+            padding: 32px 48px;
+            text-align: center;
+            color: var(--p5-gray);
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--p5-red);
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media(max-width: 900px) {
+            .hero, .cert-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .contact-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            header {
+                padding: 16px 24px;
+            }
+            nav ul {
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="bg-pattern"></div>
+    <div class="bg-pattern"></div>
 
-    <!-- Navigation Header -->
-    <header>
-        <div class="logo">Benedick<span>//</span></div>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#organizations">Organizations</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Navigation Header -->
+    <header>
+        <div class="logo">Benedick<span>//</span></div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#organizations">Organizations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="container">
+    <div class="container">
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <div class="hero-badge">BSIT Student & Developer</div>
-                <h1>Engineering backend solutions with <span>precision.</span></h1>
-                <p>I am a 3rd-year Bachelor of Science in Information Technology student at the Polytechnic University of the Philippines (PUP) and a multi-scholar. Passionate about building functional and user-centric software, specializing in back-end web development and database management.</p>
-            </div>
-            <div class="profile-card">
-                <!-- Profile Image Fully Contained -->
-                <div class="profile-img-container">
-                    <img src="image.png" alt="Benedick M. Aguinaldo Profile Picture">
-                </div>
-                <h3>Benedick M. Aguinaldo</h3>
-                <p>Backend Developer & Database Architect</p>
-                <div class="profile-meta">
-                    <div>
-                        <span>Institution</span>
-                        <span>PUP Main Sta. Mesa</span>
-                    </div>
-                    <div>
-                        <span>Year Level</span>
-                        <span>3rd Year (BSIT)</span>
-                    </div>
-                    <div>
-                        <span>Status</span>
-                        <span style="color: #4BB543;">Active Scholar</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">BSIT Student & Developer</div>
+                <h1>Engineering backend solutions with <span>precision.</span></h1>
+                <p>I am a 3rd-year Bachelor of Science in Information Technology student at the Polytechnic University of the Philippines (PUP) and a multi-scholar. Passionate about building functional and user-centric software, specializing in back-end web development and database management.</p>
+            </div>
+            <div class="profile-card">
+                <!-- Profile Image Fully Contained -->
+                <div class="profile-img-container">
+                    <img src="image.png" alt="Benedick M. Aguinaldo Profile Picture">
+                </div>
+                <h3>Benedick M. Aguinaldo</h3>
+                <p>Backend Developer & Database Architect</p>
+                <div class="profile-meta">
+                    <div>
+                        <span>Institution</span>
+                        <span>PUP Main Sta. Mesa</span>
+                    </div>
+                    <div>
+                        <span>Year Level</span>
+                        <span>3rd Year (BSIT)</span>
+                    </div>
+                    <div>
+                        <span>Status</span>
+                        <span style="color: #4BB543;">Active Scholar</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- About Section -->
-        <section id="about">
-            <div class="section-header">
-                <h2 class="section-title">Professional Profile</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="pro-card">
-                <p>Driven by a blend of technical precision and creative problem-solving, I love turning complex ideas into clean, efficient, and visually compelling digital solutions. My core focus lies in architecting robust server-side systems, optimizing database operations, and ensuring structural integrity across modern applications.</p>
-            </div>
-        </section>
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <h2 class="section-title">Professional Profile</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="pro-card">
+                <p>Driven by a blend of technical precision and creative problem-solving, I love turning complex ideas into clean, efficient, and visually compelling digital solutions. My core focus lies in architecting robust server-side systems, optimizing database operations, and ensuring structural integrity across modern applications.</p>
+            </div>
+        </section>
 
-        <!-- Education & Scholarship Section -->
-        <section id="education">
-            <div class="section-header">
-                <h2 class="section-title">Education & Honors</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="card-grid">
-                <div class="pro-card">
-                    <h4>Academic Background</h4>
-                    <div class="subtitle">Polytechnic University of the Philippines</div>
-                    <p style="margin-bottom: 12px;"><strong>Degree:</strong> Bachelor of Science in Information Technology (BSIT)</p>
-                    <p style="margin-bottom: 12px;"><strong>Location:</strong> Main Sta. Mesa, Manila</p>
-                    <p style="margin-bottom: 12px;"><strong>Timeline:</strong> 2024 – Present (3rd Year)</p>
-                    <p><strong>Standing:</strong> President Lister’s, Dean Lister’s</p>
-                </div>
-                <div class="pro-card">
-                    <h4>Scholarships & Grants</h4>
-                    <div class="subtitle">Institutional Support</div>
-                    <ul class="styled-list">
-                        <li><strong>DOST Undergraduate Scholar</strong> – Department of Science and Technology</li>
-                        <li><strong>QCYDO Scholar</strong> – Quezon City Youth Development Office</li>
-                        <li><strong>SM Scholar</strong> – SM Foundation passer</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <!-- Education & Scholarship Section -->
+        <section id="education">
+            <div class="section-header">
+                <h2 class="section-title">Education & Honors</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card-grid">
+                <div class="pro-card">
+                    <h4>Academic Background</h4>
+                    <div class="subtitle">Polytechnic University of the Philippines</div>
+                    <p style="margin-bottom: 12px;"><strong>Degree:</strong> Bachelor of Science in Information Technology (BSIT)</p>
+                    <p style="margin-bottom: 12px;"><strong>Location:</strong> Main Sta. Mesa, Manila</p>
+                    <p style="margin-bottom: 12px;"><strong>Timeline:</strong> 2024 – Present (3rd Year)</p>
+                    <p><strong>Standing:</strong> President Lister’s, Dean Lister’s</p>
+                </div>
+                <div class="pro-card">
+                    <h4>Scholarships & Grants</h4>
+                    <div class="subtitle">Institutional Support</div>
+                    <ul class="styled-list">
+                        <li><strong>DOST Undergraduate Scholar</strong> – Department of Science and Technology</li>
+                        <li><strong>QCYDO Scholar</strong> – Quezon City Youth Development Office</li>
+                        <li><strong>SM Scholar</strong> – SM Foundation passer</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <!-- Certifications Section -->
-        <section id="certifications">
-            <div class="section-header">
-                <h2 class="section-title">Certifications</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="pro-card">
-                <div class="cert-container">
-                    <div class="cert-img-wrapper">
-                        <!-- Certification Image Attached -->
-                        <img src="image_2.png" alt="Introduction to Cloud Certificate - IBM & Cognitive Class">
-                    </div>
-                    <div>
-                        <h4>Introduction to Cloud</h4>
-                        <div class="subtitle">Cognitive Class (Powered by IBM Developer Skills Network)</div>
-                        <p style="margin-bottom: 12px;"><strong>Course Code:</strong> CC0101EN</p>
-                        <p style="margin-bottom: 12px;"><strong>Issued On:</strong> October 19, 2026</p>
-                        <p>Successfully completed and earned a passing grade, validating fundamental cloud computing concepts and architectures.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="pro-card">
+                <div class="cert-container">
+                    <div class="cert-img-wrapper">
+                        <!-- Certification Image Attached -->
+                        <img src="image_2.png" alt="Introduction to Cloud Certificate - IBM & Cognitive Class">
+                    </div>
+                    <div>
+                        <h4>Introduction to Cloud</h4>
+                        <div class="subtitle">Cognitive Class (Powered by IBM Developer Skills Network)</div>
+                        <p style="margin-bottom: 12px;"><strong>Course Code:</strong> CC0101EN</p>
+                        <p style="margin-bottom: 12px;"><strong>Issued On:</strong> October 19, 2026</p>
+                        <p>Successfully completed and earned a passing grade, validating fundamental cloud computing concepts and architectures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Skills Section -->
-        <section id="skills">
-            <div class="section-header">
-                <h2 class="section-title">Technical Expertise</h2>
-                <div class="section-line"></div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Languages & Core Technologies</h4>
-                <div class="tag-container">
-                    <span class="tech-tag">Java</span>
-                    <span class="tech-tag">PHP</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">SQL</span>
-                </div>
-            </div>
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Languages & Core Technologies</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">SQL</span>
+                </div>
+            </div>
 
-            <div class="skills-category">
-                <h4>Databases & Backend Infrastructure</h4>
-                <div class="tag-container">
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">Apache / XAMPP</span>
-                    <span class="tech-tag">CRUD Operations</span>
-                    <span class="tech-tag">Database DDL/DML Design</span>
-                </div>
-            </div>
+            <div class="skills-category">
+                <h4>Databases & Backend Infrastructure</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Apache / XAMPP</span>
+                    <span class="tech-tag">CRUD Operations</span>
+                    <span class="tech-tag">Database DDL/DML Design</span>
+                </div>
+            </div>
 
-            <div class="skills-category">
-                <h4>Frameworks & Design Methodologies</h4>
-                <div class="tag-container">
-                    <span class="tech-tag">Tailwind CSS</span>
-                    <span class="tech-tag">Responsive Web Design</span>
-                    <span class="tech-tag">UI/UX Prototyping</span>
-                    <span class="tech-tag">Dark-Mode Interface Design</span>
-                    <span class="tech-tag">UML Component & Deployment Diagrams</span>
-                </div>
-            </div>
+            <div class="skills-category">
+                <h4>Frameworks & Design Methodologies</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">Responsive Web Design</span>
+                    <span class="tech-tag">UI/UX Prototyping</span>
+                    <span class="tech-tag">Dark-Mode Interface Design</span>
+                    <span class="tech-tag">UML Component & Deployment Diagrams</span>
+                </div>
+            </div>
 
-            <div class="skills-category">
-                <h4>Development Tools & Environments</h4>
-                <div class="tag-container">
-                    <span class="tech-tag">Visual Studio Code</span>
-                    <span class="tech-tag">Git</span>
-                    <span class="tech-tag">Vercel</span>
-                    <span class="tech-tag">Adobe Lightroom & Photoshop</span>
-                </div>
-            </div>
-        </section>
+            <div class="skills-category">
+                <h4>Development Tools & Environments</h4>
+                <div class="tag-container">
+                    <span class="tech-tag">Visual Studio Code</span>
+                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">Vercel</span>
+                    <span class="tech-tag">Adobe Lightroom & Photoshop</span>
+                </div>
+            </div>
+        </section>
 
-        <!-- Organizations Section -->
-        <section id="organizations">
-            <div class="section-header">
-                <h2 class="section-title">Organizations</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="org-grid">
-                <div class="org-item">
-                    <span>Google Developer Group (GDG)</span>
-                    <span>Member</span>
-                </div>
-                <div class="org-item">
-                    <span>Cisco NetConnect PUP-Manila</span>
-                    <span>Member</span>
-                </div>
-                <div class="org-item">
-                    <span>ARK (AcademiTech Research & Knowledge)</span>
-                    <span>Member</span>
-                </div>
-                <div class="org-item">
-                    <span>IBITS (Institute of Best IT Students)</span>
-                    <span>Member</span>
-                </div>
-            </div>
-        </section>
+        <!-- Organizations Section -->
+        <section id="organizations">
+            <div class="section-header">
+                <h2 class="section-title">Organizations</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="org-grid">
+                <div class="org-item">
+                    <span>Google Developer Group (GDG)</span>
+                    <span>Member</span>
+                </div>
+                <div class="org-item">
+                    <span>Cisco NetConnect PUP-Manila</span>
+                    <span>Member</span>
+                </div>
+                <div class="org-item">
+                    <span>ARK (AcademiTech Research & Knowledge)</span>
+                    <span>Member</span>
+                </div>
+                <div class="org-item">
+                    <span>IBITS (Institute of Best IT Students)</span>
+                    <span>Member</span>
+                </div>
+            </div>
+        </section>
 
-        <!-- Contact Section -->
-        <section id="contact">
-            <div class="section-header">
-                <h2 class="section-title">Contact Channels</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="contact-stack">
-                <div class="contact-row">
-                    <div class="contact-info-group">
-                        <span class="contact-label">Email</span>
-                        <span class="contact-value">benidick0223@gmail.com</span>
-                    </div>
-                    <button class="copy-btn" onclick="copyToClipboard('benidick0223@gmail.com', this)">Copy Info</button>
-                </div>
-                <div class="contact-row">
-                    <div class="contact-info-group">
-                        <span class="contact-label">PUP Webmail</span>
-                        <span class="contact-value">benedickmaguinaldo@iskolarngbayan.pup</span>
-                    </div>
-                    <button class="copy-btn" onclick="copyToClipboard('benedickmaguinaldo@iskolarngbayan.pup', this)">Copy Info</button>
-                </div>
-                <div class="contact-row">
-                    <div class="contact-info-group">
-                        <span class="contact-label">Phone</span>
-                        <span class="contact-value">09351597558</span>
-                    </div>
-                    <button class="copy-btn" onclick="copyToClipboard('09351597558', this)">Copy Info</button>
-                </div>
-                <a href="https://www.linkedin.com/in/benedick-aguinaldo-381680350/" class="contact-row" target="_blank">
-                    <div class="contact-info-group">
-                        <span class="contact-label">LinkedIn</span>
-                        <span class="contact-value">https://www.linkedin.com/in/benedick-aguinaldo-381680350/</span>
-                    </div>
-                </a>
-                <a href="https://www.facebook.com/benidick.aguinaldo" class="contact-row" target="_blank">
-                    <div class="contact-info-group">
-                        <span class="contact-label">Facebook</span>
-                        <span class="contact-value">https://www.facebook.com/benidick.aguinaldo</span>
-                    </div>
-                </a>
-            </div>
-        </section>
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="section-header">
+                <h2 class="section-title">Contact Channels</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-stack">
+                <a href="space" class="contact-row" target="_blank">
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">benidick0223@gmail.com</span>
+                </a>
+                <a href="benedickmaguinaldo@iskolarngbayan.pup" class="contact-row" target="_blank">
+                    <span class="contact-label">PUP Webmail</span>
+                    <span class="contact-value">benedickmaguinaldo@iskolarngbayan.pup</span>
+                </a>
+                <a href="09351597558" class="contact-row" target="_blank">
+                    <span class="contact-label">Phone</span>
+                    <span class="contact-value">09351597558</span>
+                </a>
+                <a href="https://www.linkedin.com/in/benedick-aguinaldo-381680350/" class="contact-row" target="_blank">
+                    <span class="contact-label">LinkedIn</span>
+                    <span class="contact-value">https://www.linkedin.com/in/benedick-aguinaldo-381680350/</span>
+                </a>
+                <a href="https://www.facebook.com/benidick.aguinaldo" class="contact-row" target="_blank">
+                    <span class="contact-label">Facebook</span>
+                    <span class="contact-value">https://www.facebook.com/benidick.aguinaldo</span>
+                </a>
+            </div>
+        </section>
 
-        <style>
-            .contact-info-group {
-                display: flex;
-                flex-direction: column;
-                gap: 2px;
-            }
-            .copy-btn {
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid var(--p5-border);
-                color: var(--p5-light);
-                padding: 8px 16px;
-                border-radius: 4px;
-                font-size: 0.875rem;
-                font-weight: 500;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                white-space: nowrap;
-            }
-            .copy-btn:hover {
-                background-color: var(--p5-red);
-                border-color: var(--p5-red);
-            }
-            .copy-btn.copied {
-                background-color: #4BB543;
-                border-color: #4BB543;
-                color: #ffffff;
-            }
-        </style>
+    </div>
 
-        <script>
-            function copyToClipboard(text, btnElement) {
-                navigator.clipboard.writeText(text).then(() => {
-                    const originalText = btnElement.innerText;
-                    btnElement.innerText = "Copied!";
-                    btnElement.classList.add("copied");
-                    
-                    setTimeout(() => {
-                        btnElement.innerText = originalText;
-                        btnElement.classList.remove("copied");
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Failed to copy: ', err);
-                });
-            }
-        </script>
-
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Benedick M. Aguinaldo.</p>
-    </footer>
-
-    <!-- Copy Script -->
-    <script>
-        function copyToClipboard(text, btnElement) {
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = btnElement.innerText;
-                btnElement.innerText = "Copied!";
-                btnElement.classList.add("copied");
-                
-                setTimeout(() => {
-                    btnElement.innerText = originalText;
-                    btnElement.classList.remove("copied");
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
-        }
-    </script>
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Benedick M. Aguinaldo.</p>
+    </footer>
 
 </body>
 </html>
