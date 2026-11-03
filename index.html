@@ -403,7 +403,7 @@
             color: var(--p5-gray);
         }
 
-        /* Stacked Contact List Styling with Copy Button */
+        /* Stacked Contact List Styling with Copy/Visit Buttons */
         .contact-stack {
             display: flex;
             flex-direction: column;
@@ -452,7 +452,7 @@
             word-break: break-all;
         }
 
-        .copy-btn {
+        .copy-btn, .visit-btn {
             background-color: rgba(217, 4, 4, 0.1);
             color: var(--p5-light);
             border: 1px solid rgba(217, 4, 4, 0.4);
@@ -463,9 +463,12 @@
             cursor: pointer;
             transition: all 0.2s ease;
             white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
 
-        .copy-btn:hover {
+        .copy-btn:hover, .visit-btn:hover {
             background-color: var(--p5-red);
             border-color: var(--p5-red);
         }
@@ -501,7 +504,7 @@
                 align-items: flex-start;
                 gap: 12px;
             }
-            .copy-btn {
+            .copy-btn, .visit-btn {
                 width: 100%;
                 text-align: center;
             }
@@ -740,7 +743,7 @@
                         <span class="contact-label">LinkedIn</span>
                         <span class="contact-value" id="val-4">https://www.linkedin.com/in/benedick-aguinaldo-381680350/</span>
                     </div>
-                    <button class="copy-btn" onclick="copyContact('val-4', this)">Copy</button>
+                    <a href="https://www.linkedin.com/in/benedick-aguinaldo-381680350/" target="_blank" rel="noopener noreferrer" class="visit-btn">Visit</a>
                 </div>
 
                 <div class="contact-row">
@@ -748,7 +751,7 @@
                         <span class="contact-label">Facebook</span>
                         <span class="contact-value" id="val-5">https://www.facebook.com/benidick.aguinaldo</span>
                     </div>
-                    <button class="copy-btn" onclick="copyContact('val-5', this)">Copy</button>
+                    <a href="https://www.facebook.com/benidick.aguinaldo" target="_blank" rel="noopener noreferrer" class="visit-btn">Visit</a>
                 </div>
             </div>
         </section>
@@ -766,7 +769,7 @@
             const textToCopy = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalText = btn.innerText;
-                btn.innerText = "Copied!";
+                btn.innerText = "Copied";
                 btn.classList.add("copied");
                 
                 setTimeout(() => {
